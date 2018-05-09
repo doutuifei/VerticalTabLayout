@@ -57,15 +57,17 @@ public class MainActivity extends AppCompatActivity {
         //默认加载第一个fragment
         fragment = SubjectFragment.newInstance(list.get(0));
         changeFragment(currPosition);
-        adapter.setLoadMoreView(new CustomLoadMoreView());
-        adapter.setOnLoadMoreListener(new BaseQuickAdapter.RequestLoadMoreListener() {
+
+        //设置indicatorView初始位置
+        adapter.setOnBinding(new NavAdapter.OnBinding() {
             @Override
-            public void onLoadMoreRequested() {
+            public void onBinding() {
                 View child = manager.findViewByPosition(0);
-                indicatorView.openAnimator(child);
-                adapter.loadMoreEnd(true);
+                if (child != null) {
+                    indicatorView.openAnimator(child);
+                }
             }
-        }, recyclerView);
+        });
     }
 
     /**

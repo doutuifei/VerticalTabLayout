@@ -39,6 +39,7 @@ public class IndicatorView extends View {
         if (getVisibility() != View.VISIBLE) {
             setVisibility(View.VISIBLE);
         }
+
         float oldY = calculateViewCenter(oldView);
         float newY = calculateViewCenter(view);
 
@@ -57,7 +58,7 @@ public class IndicatorView extends View {
      * @return
      */
     private float calculateViewCenter(View view) {
-        int tabHeight = getHeight();
+        int tabHeight = getMeasuredHeight();
         int viewHeight = view.getHeight();
         int viewTop = view.getTop();
         return 1f * (viewTop + viewHeight / 2 - tabHeight / 2);

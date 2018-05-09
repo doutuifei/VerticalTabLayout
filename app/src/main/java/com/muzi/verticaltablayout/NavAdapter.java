@@ -19,5 +19,19 @@ public class NavAdapter extends BaseQuickAdapter<String, BaseViewHolder> {
     @Override
     protected void convert(BaseViewHolder helper, String item) {
         helper.setText(R.id.tabText, item);
+        if (onBinding!=null){
+            onBinding.onBinding();
+        }
     }
+
+    private OnBinding onBinding;
+
+    public void setOnBinding(OnBinding onBinding) {
+        this.onBinding = onBinding;
+    }
+
+    public interface  OnBinding{
+        void onBinding();
+    }
+
 }

@@ -59,13 +59,18 @@ public class MainActivity extends AppCompatActivity {
         changeFragment(currPosition);
 
         //设置indicatorView初始位置
-        adapter.setOnBinding(new NavAdapter.OnBinding() {
+        recyclerView.post(new Runnable() {
             @Override
-            public void onBinding() {
-                View child = manager.findViewByPosition(0);
-                if (child != null) {
-                    indicatorView.openAnimator(child);
-                }
+            public void run() {
+                MainActivity.this.runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        View child = manager.findViewByPosition(0);
+                        if (child != null) {
+                            indicatorView.openAnimator(child);
+                        }
+                    }
+                });
             }
         });
     }
